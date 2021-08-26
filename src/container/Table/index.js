@@ -1,6 +1,6 @@
 import React from "react";
 import { useFetch } from "../../hooks";
-import { Show } from "../../components/Show";
+import { Show, Collapse } from "../../components";
 
 export const Table = () => {
   const { getApi, fetchData, data, loading, error } = useFetch();
@@ -22,11 +22,11 @@ export const Table = () => {
           <p>Loading...</p>
         </Show>
         <Show show={!loading && data}>
-          <table>
+          <div>
             {data.map(({ title, id }) => (
-              <tr key={id}>{title}</tr>
+              <Collapse key={id} id={id} title={title} />
             ))}
-          </table>
+          </div>
         </Show>
       </Show>
     </div>
