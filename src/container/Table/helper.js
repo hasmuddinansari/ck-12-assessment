@@ -1,4 +1,4 @@
-function compare(a, b) {
+const compare = (a, b) => {
   if (a.sequenceNO < b.sequenceNO) {
     return -1;
   }
@@ -6,7 +6,7 @@ function compare(a, b) {
     return 1;
   }
   return 0;
-}
+};
 
 export const factorySection = ({ sectionData, sectionId }) => {
   try {

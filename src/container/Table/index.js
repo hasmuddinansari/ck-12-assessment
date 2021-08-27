@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useFetch } from "../../hooks";
 import { Show } from "../../components";
-import { TableWrapper, ContentWrapper, Container } from "./styled";
 import { Section } from "./Section";
+import { TableWrapper, ContentWrapper, Container } from "./styled";
 
 const bookId = "maths";
 
@@ -24,9 +24,6 @@ export const Table = () => {
         <div>{error}</div>
       </Show>
       <Show show={!error}>
-        <Show show={loading}>
-          <p>Loading...</p>
-        </Show>
         <Show show={!loading && books}>
           <ContentWrapper>
             <h1>Math Chapters</h1>

@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { CollapseWrapper, Header, CollapseChild } from "./styled";
 
 export const Collapse = ({ title, children, onHeaderClick, childSize }) => {
-  const collapseRef = useRef(null);
   const iconRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,12 +25,7 @@ export const Collapse = ({ title, children, onHeaderClick, childSize }) => {
         </svg>
         <p>{title}</p>
       </Header>
-      <CollapseChild
-        ref={collapseRef}
-        size={childSize}
-        open={isOpen}
-        className="collapse-child"
-      >
+      <CollapseChild size={childSize} open={isOpen} className="collapse-child">
         {children}
       </CollapseChild>
     </CollapseWrapper>

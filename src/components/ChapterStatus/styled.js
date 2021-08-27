@@ -27,11 +27,6 @@ export const ProgressCircle = styled(Circle)`
     width: 10px;
     height: 10px;
   }
-
-  &:before {
-    top: -300%;
-    height: 30px;
-  }
 `;
 
 export const CompleteCircle = styled(Circle)`
