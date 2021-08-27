@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useFetch } from "../../hooks";
 import { Show } from "../../components";
-import { TableWrapper, ContentWrapper } from "./styled";
+import { TableWrapper, ContentWrapper, Container } from "./styled";
 import { Section } from "./Section";
 
 const bookId = "maths";
@@ -19,7 +19,7 @@ export const Table = () => {
   }, []);
 
   return (
-    <div className="justify-center">
+    <Container>
       <Show show={error}>
         <div>{error}</div>
       </Show>
@@ -45,6 +45,6 @@ export const Table = () => {
           </ContentWrapper>
         </Show>
       </Show>
-    </div>
+    </Container>
   );
 };

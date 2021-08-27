@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CollapseWrapper = styled.div`
   position: relative;
-  padding-block: 5px;
   overflow: hidden;
 
   & .rotate {
@@ -12,14 +11,23 @@ export const CollapseWrapper = styled.div`
 `;
 
 export const Header = styled.h1`
-  padding: 10px;
+  padding: 15px 12px;
   position: relative;
   font-size: 18px;
   display: flex;
   align-items: center;
   cursor: pointer;
+  border-bottom: 1px solid ${({ theme }) => theme.border};
+  &:hover {
+    background: ${({ theme }) => theme.green};
+    color: ${({ theme }) => theme.white};
+    & svg {
+      stroke: ${({ theme }) => theme.white};
+    }
+  }
   & svg {
-    transition: 0.1s linear;
+    transition: transform 0.1s linear;
+    margin-left: 5px;
   }
   & > p {
     padding-inline: 1rem;
@@ -27,12 +35,8 @@ export const Header = styled.h1`
 `;
 
 export const CollapseChild = styled.div`
-  transition: height 0.1s linear;
+  transition: height 0.4s ease-in-out;
   background-color: white;
-  height: 0px;
-  ${({ theme }) => theme.shadow1};
-  &.collapse {
-    transition: 0.1s linear;
-    height: ${({ size }) => `${Number(size) * 42}px`};
-  }
+  height: ${({ size, open }) => (open ? `${Number(size || 2) * 52}px` : "0")};
+  padding-inline: 4px;
 `;

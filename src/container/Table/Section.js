@@ -1,11 +1,18 @@
 import React, { useMemo } from "react";
 import { Collapse, Show } from "../../components";
+import { ChapterStatus } from "../../components/ChapterStatus";
+import { Spinner } from "../../components/Spinner";
 import { useFetch } from "../../hooks";
 import { factorySection } from "./helper";
-import { ListWrapper, SectionList } from "./styled";
+import {
+  ListWrapper,
+  SectionList,
+  ErrorMessage,
+  LoadingSpinner,
+} from "./styled";
 
 export const Section = ({ title, sectionId, bookId }) => {
-  const { getApi, fetchData, data, loading } = useFetch();
+  const { getApi, fetchData, data, loading, error } = useFetch();
 
   const fetchChapter = () => {
     const url = getApi({ bookId, sectionId }).SECTION;
@@ -14,10 +21,8 @@ export const Section = ({ title, sectionId, bookId }) => {
 
   const section = useMemo(
     () => factorySection({ sectionId, sectionData: data }),
-    [data]
+    [data, sectionId]
   );
-
-  console.log(section);
 
   return (
     <Collapse
@@ -28,12 +33,20 @@ export const Section = ({ title, sectionId, bookId }) => {
       }}
     >
       <Show show={loading}>
-        <ListWrapper>Loading...</ListWrapper>
+        <LoadingSpinner className="flex-center">
+          <Spinner />
+        </LoadingSpinner>
       </Show>
-      <Show show={!loading && !!section?.length}>
+      <Show show={error}>
+        <ErrorMessage>{error}</ErrorMessage>
+      </Show>
+      <Show show={!loading && !!section?.length && !error}>
         <ListWrapper>
-          {section.map(({ title, id }) => (
-            <SectionList key={id}>{title}</SectionList>
+          {section.map(({ title, id, status }) => (
+            <SectionList key={id}>
+              <ChapterStatus {...{ status }} />
+              <div>{title}</div>
+            </SectionList>
           ))}
         </ListWrapper>
       </Show>

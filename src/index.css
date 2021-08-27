@@ -25,3 +25,7 @@ body {
 .justify-center {
   align-items: flex-start;
 }
+
+.h-0 {
+  height: 0;
+}

@@ -1,19 +1,20 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { CollapseWrapper, Header, CollapseChild } from "./styled";
 
 export const Collapse = ({ title, children, onHeaderClick, childSize }) => {
   const collapseRef = useRef(null);
   const iconRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const openCollapse = () => {
     onHeaderClick();
-    collapseRef.current.classList.toggle("collapse");
+    setIsOpen((isOpen) => !isOpen);
     iconRef.current.classList.toggle("rotate");
   };
 
   return (
     <CollapseWrapper>
-      <Header role="presentation" onClick={openCollapse}>
+      <Header role="presentation" onClick={openCollapse} title={title}>
         <svg
           ref={iconRef}
           height="14"
@@ -28,6 +29,7 @@ export const Collapse = ({ title, children, onHeaderClick, childSize }) => {
       <CollapseChild
         ref={collapseRef}
         size={childSize}
+        open={isOpen}
         className="collapse-child"
       >
         {children}
