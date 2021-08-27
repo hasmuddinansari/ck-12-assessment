@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 
 const getApi = ({ bookId, sectionId }) => ({
   BOOK: `http://localhost:3000/api/book/${bookId}`,
-  CHAPTER: `http://localhost:3000/api/book/${bookId}/section/${sectionId}`,
+  SECTION: `http://localhost:3000/api/book/${bookId}/section/${sectionId}`,
 });
 
 export const useFetch = () => {

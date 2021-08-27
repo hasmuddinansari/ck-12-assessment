@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFetch } from "../../hooks";
-import { Show, Collapse } from "../../components";
+import { Show } from "../../components";
+import { TableWrapper, ContentWrapper } from "./styled";
+import { Section } from "./Section";
+
+const bookId = "maths";
 
 export const Table = () => {
-  const { getApi, fetchData, data, loading, error } = useFetch();
+  const { getApi, fetchData, data: books, loading, error } = useFetch();
 
-  const handleGetBook = () => {
-    const bookId = "maths";
+  const getBookById = (bookId) => {
     const url = getApi({ bookId }).BOOK;
     fetchData(url);
   };
 
+  useEffect(() => {
+    getBookById(bookId);
+  }, []);
+
   return (
-    <div>
-      <button onClick={handleGetBook}>Click to fetch Books</button>
+    <div className="justify-center">
       <Show show={error}>
         <div>{error}</div>
       </Show>
@@ -21,12 +27,22 @@ export const Table = () => {
         <Show show={loading}>
           <p>Loading...</p>
         </Show>
-        <Show show={!loading && data}>
-          <div>
-            {data.map(({ title, id }) => (
-              <Collapse key={id} id={id} title={title} />
-            ))}
-          </div>
+        <Show show={!loading && books}>
+          <ContentWrapper>
+            <h1>Math Chapters</h1>
+            <TableWrapper>
+              {books.map(({ title, id }) => (
+                <Section
+                  {...{
+                    title,
+                    bookId,
+                    sectionId: id,
+                    key: id,
+                  }}
+                />
+              ))}
+            </TableWrapper>
+          </ContentWrapper>
         </Show>
       </Show>
     </div>
