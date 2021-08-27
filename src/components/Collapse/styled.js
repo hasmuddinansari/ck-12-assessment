@@ -27,16 +27,18 @@ export const Header = styled.h1`
   }
   & svg {
     transition: transform 0.1s linear;
-    margin-left: 5px;
+    margin-right: 20px;
+    position: absolute;
   }
   & > p {
-    padding-inline: 1rem;
+    padding-left: 2rem;
   }
 `;
 
 export const CollapseChild = styled.div`
-  transition: height 0.4s ease-in-out;
+  transition: max-height 0.5s ease-in-out;
   background-color: white;
-  height: ${({ size, open }) => (open ? `${Number(size || 2) * 52}px` : "0")};
+  max-height: ${({ size, open }) =>
+    open ? `${Number(size || 1) * 200}px` : "0"};
   padding-inline: 4px;
 `;

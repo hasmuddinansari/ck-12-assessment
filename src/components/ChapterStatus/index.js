@@ -6,10 +6,10 @@ const { COMPLETE, IN_PROGRESS } = CHAPTER_STATUS;
 export const ChapterStatus = ({ status }) => {
   switch (status) {
     case COMPLETE:
-      return <CompleteCircle />;
+      return <CompleteCircle className="complete" />;
     case IN_PROGRESS:
-      return <ProgressCircle />;
+      return <ProgressCircle className="pending" />;
     default:
-      return <Circle />;
+      return <Circle className="not-complete" />;
   }
 };

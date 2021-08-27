@@ -1,20 +1,4 @@
-import styled, { css } from "styled-components";
-
-export const line = css`
-  position: relative;
-  &:before {
-    content: "";
-    position: absolute;
-    top: -210%;
-    left: 50%;
-    transform: translate(-50%);
-    height: 32px;
-    width: 1px;
-    background: black;
-    overflow: hidden;
-    z-index: 0;
-  }
-`;
+import styled from "styled-components";
 
 export const Circle = styled.div`
   height: 15px;
@@ -22,17 +6,28 @@ export const Circle = styled.div`
   border: 1px solid black;
   border-radius: 50%;
   background: ${({ theme }) => theme.white};
-  ${line};
-  &:before {
-    top: -270%;
-    height: 33px;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    width: 12px;
+    height: 12px;
+    background: ${({ theme }) => theme.white};
+    border-radius: 50%;
   }
 `;
 
 export const ProgressCircle = styled(Circle)`
   border: 2px dotted ${({ theme }) => theme.green};
   background: ${({ theme }) => theme.white};
-  ${line};
+  position: relative;
+  &:after {
+    content: "";
+    left: 0;
+    width: 10px;
+    height: 10px;
+  }
+
   &:before {
     top: -300%;
     height: 30px;
@@ -42,7 +37,6 @@ export const ProgressCircle = styled(Circle)`
 export const CompleteCircle = styled(Circle)`
   position: relative;
   border: none;
-  ${line};
   &:after {
     content: "✔";
     position: absolute;

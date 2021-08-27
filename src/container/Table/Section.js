@@ -9,6 +9,7 @@ import {
   SectionList,
   ErrorMessage,
   LoadingSpinner,
+  Status,
 } from "./styled";
 
 export const Section = ({ title, sectionId, bookId }) => {
@@ -44,7 +45,9 @@ export const Section = ({ title, sectionId, bookId }) => {
         <ListWrapper>
           {section.map(({ title, id, status }) => (
             <SectionList key={id}>
-              <ChapterStatus {...{ status }} />
+              <Status>
+                <ChapterStatus {...{ status }} />
+              </Status>
               <div>{title}</div>
             </SectionList>
           ))}

@@ -25,17 +25,24 @@ export const SectionList = styled.div`
   box-sizing: border-box;
   padding: 12px 13px;
   display: flex;
-  min-height: 50px;
   align-items: center;
+  position: relative;
   &:nth-child(1) > div:nth-child(1) {
     &:before {
       content: "";
-      height: 0 !important;
+      height: 50%;
+      top: 50%;
     }
   }
-  & > div:nth-child(1) {
-    margin-right: 10px;
-    margin-top: 2px;
+  &:last-child > div:nth-child(1) {
+    &:before {
+      content: "";
+      height: 50%;
+      top: 0%;
+    }
+  }
+  & > div:nth-child(2) {
+    margin-left: 30px;
   }
 `;
 
@@ -55,4 +62,22 @@ export const Container = styled.div`
 
 export const LoadingSpinner = styled.div`
   height: 100px;
+`;
+
+export const Status = styled.div`
+  position: absolute;
+  height: 100%;
+  display: flex;
+  z-index: 1;
+  align-items: center;
+  &:before {
+    content: "";
+    height: 100%;
+    width: 1px;
+    background: black;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    z-index: 0;
+  }
 `;
